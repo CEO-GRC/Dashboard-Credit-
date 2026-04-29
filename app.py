@@ -754,9 +754,9 @@ def main():
             st.rerun()
     
     with col_h3:
-        theme_label = "Dark" if st.session_state.theme == 'light' else "Light"
+        theme_label = "Light" if st.session_state.theme == 'Dark' else "Dark"
         if st.button(f"◐ {theme_label}", use_container_width=True):
-            st.session_state.theme = 'dark' if st.session_state.theme == 'light' else 'light'
+            st.session_state.theme = 'Light' if st.session_state.theme == 'Dark' else 'Dark'
             st.rerun()
     
     with col_h4:
