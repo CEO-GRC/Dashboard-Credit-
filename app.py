@@ -507,44 +507,67 @@ def inject_custom_css():
 # ═══════════════════════════════════════════════════════════════════════
 
 def check_authentication():
-    """Authentication"""
+    """Sistema de autenticación con secrets o fallback"""
+    
+    # Obtener contraseña de secrets o usar fallback
     try:
         correct_password = st.secrets.get("AR_PASSWORD", "AMRIZE2024")
     except:
         correct_password = "AMRIZE2024"
     
+    # Inicializar estado de autenticación
     if 'authenticated' not in st.session_state:
         st.session_state.authenticated = False
     
+    # Si ya está autenticado, retornar True
     if st.session_state.authenticated:
         return True
     
+    # Pantalla de login
     st.markdown(f"""
-    <div style='max-width: 400px; margin: 5rem auto; padding: 2.5rem;
-                background: linear-gradient(135deg, {AMZ_MIDNIGHT}, {AMZ_ROYAL});
-                border-radius: 8px; box-shadow: 0 10px 40px rgba(0,0,0,0.2);'>
-        <h1 style='color: white; margin: 0 0 0.5rem; font-size: 1.8rem; font-weight: 700;'>
-            AMRIZE
+    <div style='text-align:center;padding:3rem;
+                background:linear-gradient(135deg,{AMZ_MIDNIGHT},{AMZ_ROYAL});
+                border-radius:20px;margin:4rem auto;max-width:500px;
+                box-shadow:0 10px 30px rgba(1,30,106,0.3)'>
+        <div style='font-size:4rem;margin-bottom:1.5rem'>🔐</div>
+        <h1 style='color:white;margin:0;font-weight:700;font-size:2rem'>
+            AMRIZE AR DASHBOARD
         </h1>
-        <p style='color: {AMZ_SKY}; margin: 0 0 2rem; font-size: 0.95rem;'>
-            {t('subtitle')}
+        <p style='color:{AMZ_SKY};margin:1rem 0 0;font-size:1.1rem'>
+            Accounts Receivable Analytics
         </p>
     </div>
     """, unsafe_allow_html=True)
     
+    # Formulario de login
     with st.form("login_form", clear_on_submit=False):
-        st.markdown(f"#### {t('login_title')}")
-        password = st.text_input(t('password'), type="password", placeholder="")
-        submitted = st.form_submit_button(t('sign_in'), use_container_width=True, type="primary")
+        st.markdown("### 🔑 Acceso Seguro")
+        password = st.text_input(
+            "Ingrese la contraseña:",
+            type="password",
+            placeholder="Contraseña de acceso..."
+        )
+        
+        col1, col2, col3 = st.columns([1, 2, 1])
+        with col2:
+            submitted = st.form_submit_button(
+                "🚀 Acceder al Dashboard",
+                use_container_width=True,
+                type="primary"
+            )
         
         if submitted:
             if password == correct_password:
                 st.session_state.authenticated = True
+                st.success("✅ Acceso concedido. Redirigiendo...")
                 st.rerun()
             else:
-                st.error(t('invalid_credentials'))
+                st.error("❌ Contraseña incorrecta. Intente nuevamente.")
+    
+    st.info("💡 **Nota:** Contacte al administrador si no tiene credenciales de acceso.")
     
     return False
+
 
 # ═══════════════════════════════════════════════════════════════════════
 # MAIN APPLICATION
