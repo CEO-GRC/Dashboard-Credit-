@@ -216,7 +216,7 @@ def fmt_pct(value):
 
 def get_color_scheme(theme='light'):
     """Return color scheme"""
-    if theme == 'light':
+    if theme == 'dark':
         return {
             'bg_primary': '#0F172A',
             'bg_secondary': '#1E293B',
