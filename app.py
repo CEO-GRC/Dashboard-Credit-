@@ -810,7 +810,7 @@ def main():
             
             all_types = sorted(df['Counterparty Type'].dropna().unique().tolist())
             selected_types = st.multiselect(
-                t('counterparty_type!!'),
+                t('Business_Group'),
                 options=all_types,
                 default=all_types,
                 key='filter_types'
