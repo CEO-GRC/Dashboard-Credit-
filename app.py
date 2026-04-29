@@ -257,7 +257,7 @@ def inject_css(theme='light'):
     }}
     
     .block-container {{
-        padding: 3.5rem 2rem 1.5rem 2rem !important;
+        padding: 4rem 2rem 1.5rem 2rem !important;
         max-width: 100% !important;
     }}
     
@@ -297,7 +297,7 @@ def inject_css(theme='light'):
     .main-header {{
         background: linear-gradient(135deg, {AMZ_MIDNIGHT} 0%, {AMZ_ROYAL} 100%);
         padding: 1.2rem 2rem;
-        margin: 0 -2rem -1.5rem -2rem;
+        margin: -1.5rem -2rem 1.5rem -2rem;
         border-bottom: 3px solid {AMZ_SKY};
     }}
     
@@ -419,6 +419,10 @@ def inject_css(theme='light'):
     
     #MainMenu {{visibility: hidden;}}
     footer {{visibility: hidden;}}
+    header[data-testid="stHeader"] {{
+        background: transparent !important;
+        height: 3rem !important;
+   }}     
         
     .element-container {{
         margin-bottom: 0.5rem !important;
