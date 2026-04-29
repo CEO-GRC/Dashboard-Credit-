@@ -214,7 +214,7 @@ def fmt_pct(value):
     except:
         return "0.0%"
 
-def get_color_scheme(theme='dark'):
+def get_color_scheme(theme='light'):
     """Return color scheme"""
     if theme == 'light':
         return {
@@ -754,9 +754,9 @@ def main():
             st.rerun()
     
     with col_h3:
-        theme_label = "Light" if st.session_state.theme == 'Dark' else "Dark"
+        theme_label = "dark" if st.session_state.theme == 'light' else "light"
         if st.button(f"◐ {theme_label}", use_container_width=True):
-            st.session_state.theme = 'Light' if st.session_state.theme == 'Dark' else 'Dark'
+            st.session_state.theme = 'Dark' if st.session_state.theme == 'light' else 'light'
             st.rerun()
     
     with col_h4:
