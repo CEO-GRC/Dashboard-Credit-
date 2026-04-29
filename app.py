@@ -17,7 +17,7 @@ import base64
 # ═══════════════════════════════════════════════════════════════════════
 
 st.set_page_config(
-    page_title="Amrize AR Dashboard",
+    page_title="Amrize Trading Dashboard",
     page_icon="📊",
     layout="wide",
     initial_sidebar_state="expanded"
