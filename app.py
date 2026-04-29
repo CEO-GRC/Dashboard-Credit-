@@ -419,8 +419,7 @@ def inject_css(theme='light'):
     
     #MainMenu {{visibility: hidden;}}
     footer {{visibility: hidden;}}
-    header {{visibility: hidden;}}
-    
+        
     .element-container {{
         margin-bottom: 0.5rem !important;
     }}
