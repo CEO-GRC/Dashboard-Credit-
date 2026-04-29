@@ -506,22 +506,39 @@ def inject_custom_css():
 # AUTHENTICATION
 # ═══════════════════════════════════════════════════════════════════════
 
-def check_password():
-    """Simple password check"""
+def check_authentication():
+    """Authentication"""
+    try:
+        correct_password = st.secrets.get("AR_PASSWORD", "AMRIZE2024")
+    except:
+        correct_password = "AMRIZE2024"
+    
     if 'authenticated' not in st.session_state:
         st.session_state.authenticated = False
     
     if st.session_state.authenticated:
         return True
     
-    st.markdown(f"### {t('login_title')}")
+    st.markdown(f"""
+    <div style='max-width: 400px; margin: 5rem auto; padding: 2.5rem;
+                background: linear-gradient(135deg, {AMZ_MIDNIGHT}, {AMZ_ROYAL});
+                border-radius: 8px; box-shadow: 0 10px 40px rgba(0,0,0,0.2);'>
+        <h1 style='color: white; margin: 0 0 0.5rem; font-size: 1.8rem; font-weight: 700;'>
+            AMRIZE
+        </h1>
+        <p style='color: {AMZ_SKY}; margin: 0 0 2rem; font-size: 0.95rem;'>
+            {t('subtitle')}
+        </p>
+    </div>
+    """, unsafe_allow_html=True)
     
-    col1, col2, col3 = st.columns([1, 1, 1])
-    
-    with col2:
-        password = st.text_input(t('password'), type="password", key="pwd_input")
-        if st.button(t('sign_in'), use_container_width=True, type="primary"):
-            if password == "amrize2025":
+    with st.form("login_form", clear_on_submit=False):
+        st.markdown(f"#### {t('login_title')}")
+        password = st.text_input(t('password'), type="password", placeholder="")
+        submitted = st.form_submit_button(t('sign_in'), use_container_width=True, type="primary")
+        
+        if submitted:
+            if password == correct_password:
                 st.session_state.authenticated = True
                 st.rerun()
             else:
