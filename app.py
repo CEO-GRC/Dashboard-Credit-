@@ -805,25 +805,35 @@ def main():
             st.markdown("---")
             st.markdown(f"### {t('filters')}")
             
-            all_types = [t('all')] + sorted(df['Counterparty Type'].dropna().unique().tolist())
-            selected_types = st.multiselect(t('counterparty_type'), options=all_types, default=[t('all')])
+            all_types = sorted(df['Counterparty Type'].dropna().unique().tolist())
+            selected_types = st.multiselect(
+                t('counterparty_type'),
+                options=all_types,
+                default=all_types,
+                key='filter_types'
+            )
             
-            if t('all') in selected_types or not selected_types:
-                available_clients = sorted(df['Counterparty Name'].dropna().unique().tolist())
-            else:
+            # Filtro por Company Name (Columna A: Counterparty Name)
+            if selected_types:
                 available_clients = sorted(
-                    df[df['Counterparty Type'].isin([t for t in selected_types if t != t('all')])]['Counterparty Name'].dropna().unique().tolist()
+                    df[df['Counterparty Type'].isin(selected_types)]['Counterparty Name'].dropna().unique().tolist()
                 )
+            else:
+                available_clients = sorted(df['Counterparty Name'].dropna().unique().tolist())
             
-            all_clients = [t('all')] + available_clients
-            selected_clients = st.multiselect(t('counterparty'), options=all_clients, default=[t('all')])
+            selected_clients = st.multiselect(
+                t('counterparty'),
+                options=available_clients,
+                default=available_clients,
+                key='filter_clients'
+            )
             
             df_filtered = df.copy()
             
-            if t('all') not in selected_types and selected_types:
+            if selected_types:
                 df_filtered = df_filtered[df_filtered['Counterparty Type'].isin(selected_types)]
             
-            if t('all') not in selected_clients and selected_clients:
+            if selected_clients:
                 df_filtered = df_filtered[df_filtered['Counterparty Name'].isin(selected_clients)]
             
             st.session_state.df_filtered = df_filtered
