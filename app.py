@@ -41,7 +41,7 @@ S_GRAY = "#6B7280"
 
 TRANSLATIONS = {
     'en': {
-        'title': 'AR DASHBOARD',
+        'title': 'TRADING DASHBOARD',
         'subtitle': 'Accounts Receivable Analytics',
         'login_title': 'Access Control',
         'password': 'Password',
