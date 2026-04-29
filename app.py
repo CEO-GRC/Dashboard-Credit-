@@ -214,9 +214,9 @@ def fmt_pct(value):
     except:
         return "0.0%"
 
-def get_color_scheme(theme='light'):
+def get_color_scheme(theme='dark'):
     """Return color scheme"""
-    if theme == 'dark':
+    if theme == 'light':
         return {
             'bg_primary': '#0F172A',
             'bg_secondary': '#1E293B',
