@@ -819,7 +819,7 @@ def main():
             st.markdown("---")
             st.markdown(f"### {t('filters')}")
             
-            all_types = sorted(df['Counterparty Type'].dropna().unique().tolist())
+            all_types = sorted(df['Business Group'].dropna().unique().tolist())
             selected_types = st.multiselect(
                 t('counterparty_type'),
                 options=all_types,
@@ -836,7 +836,7 @@ def main():
                 available_clients = sorted(df['Counterparty Name'].dropna().unique().tolist())
             
             selected_clients = st.multiselect(
-                t('counterparty'),
+                t('Business Name'),
                 options=available_clients,
                 default=available_clients,
                 key='filter_clients'
