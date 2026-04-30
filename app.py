@@ -821,7 +821,7 @@ def main():
             
             all_types = sorted(df['Counterparty Type'].dropna().unique().tolist())
             selected_types = st.multiselect(
-                t('counterparty_type'),
+                t('Business Group'),
                 options=all_types,
                 default=all_types,
                 key='filter_types'
@@ -836,7 +836,7 @@ def main():
                 available_clients = sorted(df['Counterparty Name'].dropna().unique().tolist())
             
             selected_clients = st.multiselect(
-                t('counterparty'),
+                t('Business Name'),
                 options=available_clients,
                 default=available_clients,
                 key='filter_clients'
