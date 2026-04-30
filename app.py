@@ -297,7 +297,7 @@ def inject_css(theme='light'):
     .main-header {{
         background: linear-gradient(135deg, {AMZ_MIDNIGHT} 0%, {AMZ_ROYAL} 100%);
         padding: 1.2rem 2rem;
-        margin: -6rem -33rem 1.5rem -2rem;
+        margin: -6rem -39rem 1.5rem -2rem;
         border-bottom: 3px solid {AMZ_SKY};
     }}
     
