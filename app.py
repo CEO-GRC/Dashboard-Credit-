@@ -836,7 +836,7 @@ def main():
                 available_clients = sorted(df['Counterparty Name'].dropna().unique().tolist())
             
             selected_clients = st.multiselect(
-                t('Business Name'),
+                t('counterparty'),
                 options=available_clients,
                 default=available_clients,
                 key='filter_clients'
