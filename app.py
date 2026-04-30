@@ -819,7 +819,7 @@ def main():
             st.markdown("---")
             st.markdown(f"### {t('filters')}")
             
-            all_types = sorted(df['Business Group'].dropna().unique().tolist())
+            all_types = sorted(df['Counterparty Type'].dropna().unique().tolist())
             selected_types = st.multiselect(
                 t('counterparty_type'),
                 options=all_types,
